@@ -1,0 +1,120 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Adrian Patterson
+% ENCS Lab Report Template
+% Version 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage[export]{adjustbox}
+
+
+\geometry{a4paper, portrait, margin = 1.25in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Title Name \\ Course 101} % Title
+\author{Adrian \textsc{Patterson} \\ ID: 40048841} % Author name
+\date{\today} % Date for the report
+
+\begin{document}
+
+\begin{titlepage}
+	\nointerlineskip  % No skip for prev line
+	\null  % Empty line
+	\vfill
+	\let\snewpage \newpage
+	\let\newpage \relax
+	\maketitle
+	\begin{center}
+		\begin{tabular}{l r}
+			Date Performed: & DATE PERFORMED \\ % Date the experiment was performed
+			Instructor: & Professor Smith \\ % Instructor/supervisor
+			Section: & XX-X
+		\end{tabular}
+	\end{center}
+	\let \newpage \snewpage
+	\vspace{3in}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.65\textwidth,scale=1.1]{ENCS.jpg} % Include the image placeholder.png
+	\end{figure}
+	\thispagestyle{empty}
+\end{titlepage}
+
+
+
+
+
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Objective}
+
+Insert objectives paragraph here
+
+
+ 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Experimental Data}
+
+Insert experimental data here
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\section{Discussion}
+
+Discuss here
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{Questions}
+
+Answers
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+
+Conclude
+
+%----------------------------------------------------------------------------------------
+%	APPENDIX
+%----------------------------------------------------------------------------------------
+
+\section{Appendix}
+
+
+
+\end{document}
