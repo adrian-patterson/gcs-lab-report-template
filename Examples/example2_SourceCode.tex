@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Adrian Patterson
+% ENCS Lab Report Template
+% Version 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{minted}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usepackage{geometry}
+\usetikzlibrary{calc}
+\usepackage{amssymb}
+
+
+\geometry{a4paper, portrait, margin = 1.25in}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+\newcommand{\tab}[0]{\hspace*{1.27cm}}
+
+\usepackage{times} 
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{Lab 3\\Elec 342} % Title
+\author{Adrian \textsc{Patterson} \\ ID: 40048841} % Author name
+\date{November 10, 2020} % Date for the report
+
+\begin{document}
+
+\begin{titlepage}
+		\nointerlineskip  % No skip for prev line
+		\null  % Empty line
+		\vfill
+		\let\snewpage \newpage
+		\let\newpage \relax
+		\maketitle
+		\begin{center}
+			\begin{tabular}{l r}
+				Date Performed: & October 27, 2020 \\ % Date the experiment was performed
+				Instructor: & Professor Lynch \\ % Instructor/supervisor
+				Section: & UQ-X
+			\end{tabular}
+		\end{center}
+		\let \newpage \snewpage
+		\vspace{2.5in}
+    	\centering \textbf{I certify that this submission is my original work and meets the Faculty's Expectations of Originality.} 
+    	\vspace{0.5in}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.65\textwidth,scale=1.1]{ENCS.jpg} % Include the image placeholder.png
+		\end{figure}
+		\thispagestyle{empty}
+		\begin{tikzpicture}[overlay,remember picture]
+		\draw [line width=3pt,rounded corners=1pt,]
+			($ (current page.north west) + (1cm,-1cm) $)
+			rectangle
+			($ (current page.south east) + (-1cm,1cm) $);  
+			\end{tikzpicture}
+			\begin{tikzpicture}[overlay,remember picture]
+			\draw [line width=3pt,rounded corners=1pt,]
+			($ (current page.north west) + (1.2cm,-1.2cm) $)
+			rectangle
+			($ (current page.south east) + (-1.2cm,1.2cm) $);  
+		\end{tikzpicture}
+\end{titlepage}
+
+
+
+
+
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Introduction}
+
+In the third experiment for ELEC 342, titled "\textit{The Discrete Time Fourier Transform and Introduction to Simulink}," Discrete Time Fourier transform in MATLAB and Simulink basics were investigated. Experiment 3 consisted of two parts; part one explored the discrete Fourier transform of a pulse input, and part two introduced Simulink, a simulation environment in MATLAB. In the first part, the fundamental MATLAB concepts learned in the first two experiments were implemented in order to perform and plot discrete time Fourier transforms. On the other hand, the second part introduced an entirely new aspect of MATLAB: The Simulink simulation environment. In retrospect, experiment two provided key insights on how MATLAB can be used for simulating discrete Fourier transforms as well as how Simulink can be useful for visualizing discrete quantization of continuous signals.
+ 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Theory}
+
+The objective of experiment 3 was to use MATLAB to compute the Discrete Time Fourier Transform. Specifically, in part one, the Fourier transform was calculated both manually and using a MATLAB function, and the results thereof were compared. It is therefore necessary to have a base understanding of the discrete fourier transform and how it works mathematically. The following equation describes the Discrete Time Fourier Transform.
+
+\begin{enumerate}
+    \item \textbf{Discrete Time Fourier Transform} \\
+    The Discrete Time Fourier Transform of some equation $x[n]$ is given by
+    \begin{center}
+       $X(e^{jw}) = \sum\limits_{n=-\infty}^{n=+\infty} x[n] \cdot e^{-jwn}$ \ \ \ \ \ \  (1)
+    \end{center}
+    This equation was implemented using MATLAB to compute the Discrete Time Fourier Transform.
+\end{enumerate}
+
+
+
+
+\section{Results, Discussion, and Questions}
+
+The results, discussion, and questions for experiment 3 will be discussed separately, in sections 1 and 2. Section 1 concerns the MATLAB portion of this experiment, while section 2 concerns the Simulink portion.
+
+\begin{enumerate}
+    \item \textbf{Part 1}
+    \begin{enumerate}
+        \item Question 1 \\ \\
+            In part (a), the objective was to obtain the DTFT of the following pulse x[n], as seen below in figure 1. 
+            \begin{figure}[H]
+                \begin{center}
+                \includegraphics[scale=0.35]{images/q1p1.png}
+                    \caption{x[n] for Part 1, Question 1}
+                \end{center}
+            \end{figure}
+            For computing the DTFT, the step size used was user defined. Thus, the script waits and asks the user to enter a step size before. Then, using equation 1 the values of the DTFT over the range [-10,10] were computed with the user defined step size. Figure 2 below shows an output when the step size $w$ was 0.1. 
+            \begin{figure}[H]
+                \begin{center}
+                \includegraphics[scale=0.45]{images/Lab3_P1Q1.png}
+                    \caption{Part 1, Question 1 Plot}
+                \end{center}
+            \end{figure}
+            
+        \item Question 2 \\ \\
+            Similar to question 1, we computed the DTFT of the the input in figure 1. However, in question 2 we computed the DTFT in two different ways. First, we computed it using the manual method (i.e. using equation 1). Second, we computed it using MATLAB's built in \texttt{fft} function to take the DTFT. Finally, the results were plotted over the range $[0,2\pi]$. Before plotting both transforms, though, it was necessary to choose a step size w that corresponded to MATLAB's built in function. In other words, it was necessary to have an array of size 21. Over a range from $[0,2\pi]$, the step size w is thus given by
+            \begin{center}
+                $w = \dfrac{2\pi}{21} \approx 0.3$
+            \end{center}
+            Therefore, using a step size of 0.3 for the manually computed DTFT, we see the comparison of the manually generated DTFT and the MATLAB function-generated DTFT in figure 3 below.
+            \begin{figure}[H]
+                \begin{center}
+                \includegraphics[scale=0.45]{images/Lab3_P1Q2.png}
+                    \caption{Part 1, Question 2 Plot}
+                \end{center}
+            \end{figure}
+    
+        \item Question 3 \\ \\
+            In question 3, the DTFT of x[n] was first taken using MATLAB's built-in \texttt{fft} function. Then, the inverse fourier transform of this was taken using the \texttt{ifft} function, theoretically resulting in our original equation x[n]. Figure 4 below shows the comparison of x[n] and $F^{-1}\{F\{x[n]\}\}$.
+            \begin{figure}[H]
+                \begin{center}
+                \includegraphics[scale=0.38]{images/Lab3_P1Q3.png}
+                    \caption{Part 1, Question 3 Plot}
+                \end{center}
+            \end{figure}
+
+\end{enumerate}
+
+\item Part 2 \\ \\
+In part 2, we used Simulink to simulate a sinusoidal singal. First, a Simulink project was instantiated. Second, a sine wave sink and an oscilloscope were added to the model.  Finally, sine wave was connected to the oscilloscope so that the output could be viewed and recorded. \\
+First, the output was observed for the normal sinusoidal wave as seen in figure 5.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.38]{images/simulink_smooth_sine.png}
+            \caption{Part 2, Normal Sine Output}
+        \end{center}
+    \end{figure}
+Then, the sample time was set to 5 seconds, increasing the quantization error. In this plot, the quantization error is evident as seen below in figure 6.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.38]{images/simulink_quantized_sine.png}
+            \caption{Part 2, Normal Sine Output}
+        \end{center}
+    \end{figure}
+
+Finally, the following model was configured to obtain a system characterized by
+\begin{center}
+    $y[n]=x[n]+\dfrac{1}{4}y[n-1]$
+\end{center}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.38]{images/p2_model.png}
+            \caption{Part 2, Difference Equation Model}
+        \end{center}
+    \end{figure}
+The output was tested under two conditions. First, figure 8 below shows the output with the same parameters as before (i.e. frequency of $\dfrac{2\pi}{150}$ and sample time of 5).
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.38]{images/p2_5.png}
+            \caption{Part 2, Difference Equation Output 1}
+        \end{center}
+    \end{figure}
+Finally, figure 9 below shows the output when the sample time was changed to 1.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.38]{images/p2_1.png}
+            \caption{Part 2, Difference Equation Output 2}
+        \end{center}
+    \end{figure}
+\end{enumerate}
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{Conclusion}
+
+Experiment 3 provided us with further MATLAB tools to help analyze and experiment with discrete time functions. Specifically, the computation of the Discrete Time Fourier Transform as well as the use of Simulink were explored. First, the use of the MATLAB fft function was compared with the manual computation of the discrete time Fourier transform. Then, Simulink was used to experiment with a discrete time model and observe the output on a simulated oscilloscope. All in all, experiment three helped to further solidify MATLAB knowledge while introducing new concepts all the same.
+
+%----------------------------------------------------------------------------------------
+%	APPENDIX
+%----------------------------------------------------------------------------------------
+\newpage
+\section{Appendix}
+
+\begin{enumerate}
+    \item Part 1: Q1 Script
+        \begin{minted}[mathescape, linenos]{MATLAB}
+% Author:   Adrian Patterson
+% ID:       40048841
+% ELEC 342, Lab Section UQ
+% Lab 3, Part 1 Question 1
+clc;
+clear;
+close all;
+
+n = (-10:1:10);     % defining the interval
+x = zeros(1,length(n)); % defining x
+    x(9:13) = 1;
+
+step = input("Enter desired step size for w: ");% allows user to input step
+w = (-pi:step:pi);          % consequently creates w interval from input
+FT = zeros(1,length(w));    % initializing fourier transform array 
+
+for h = 1:length(w)         % for loop using length function
+   sum = 0;
+   for k = 1:length(n)
+       sum = sum + (x(k)*exp(-1i*w(h)*n(k)));  % fourier transform is computed     
+   end
+   FT(h) = sum;
+end
+FT_mag = abs(FT);           % here we get the magnitude using the abs() function
+    
+subplot(1,2,1)              % plots
+title("x[n]");
+    hold on;
+    stem(n,x);
+    xlabel("n");
+    ylabel("x[n]");
+
+subplot(1,2,2)
+title('$$|X(e^{jw})|$$','interpreter','latex');
+    hold on;
+    stem(w,FT_mag);
+    xlabel("w");
+    ylabel('$$|X(e^{jw})|$$','interpreter','latex');
+        \end{minted}
+        \vspace{.5cm}
+        
+    \item Part 1: Q2 Script
+        \begin{minted}[mathescape, linenos]{MATLAB}
+% Author:   Adrian Patterson
+% ID:       40048841
+% ELEC 342, Lab Section UQ
+% Lab 3, Part 1 Question 2
+clc;
+clear;
+close all;
+
+n = (-10:1:10);     % defining the interval
+x = zeros(1,length(n)); % defining the input x
+    x(9:13) = 1;
+
+w = (0:0.3:2*pi);           % we need 2*pi/21 = 0.3 step size
+FT = zeros(1,length(w));    % initializing fourier transform array
+
+for h = 1:length(w)
+   sum = 0;
+   for k = 1:length(n)
+       sum = sum + (x(k)*exp(-1i*w(h)*n(k)));   % computing the fourier transform
+   end
+   FT(h) = sum;
+end
+FT_mag = abs(FT);       % getting the magnitude of FT
+
+FFT = fft(x);           % computing fourier transform using fft() function
+FFT_mag = abs(FFT);     % getting the magnitude of FFT
+
+subplot(1,2,1)          % plots
+title('$$|X(e^{jw})| \ by \ Computation$$','interpreter','latex');
+    hold on;
+    stem(w,FT_mag);
+    xlabel("n");
+    ylabel("x[n]");
+
+subplot(1,2,2)
+title('$$|X(e^{jw})| \ by \  using \ fft(x)$$','interpreter','latex');
+    hold on;
+    stem(w,FFT_mag);
+    xlabel("w");
+    ylabel('$$|X(e^{jw})|$$','interpreter','latex');
+        \end{minted}
+        \vspace{.5cm}
+        
+    \item Part 1: Q3 Script
+        \begin{minted}[mathescape, linenos]{MATLAB}
+% Author:   Adrian Patterson
+% ID:       40048841
+% ELEC 342, Lab Section UQ
+% Lab 3, Part 1 Question 3
+clc;
+clear;
+close all;
+
+n = (-10:1:10);     % defining the interval
+x = zeros(1,length(n)); % defining the input x
+    x(9:13) = 1;
+   
+FFT = fft(x);       % taking fourier transform of x
+IFFT = ifft(FFT);   % taking inverse fourier transform of FFT
+
+subplot(1,2,1)      % plots
+title('$$x[n]$$','interpreter','latex');
+    hold on;
+    stem(n,x);
+    xlabel("n");
+    ylabel("x[n]");
+
+subplot(1,2,2)
+title('$$x[n] = F^-1\{X(e^{jw})\}$$','interpreter','latex');
+    hold on;
+    stem(n,IFFT);
+    xlabel("n");
+    ylabel("x[n]");
+        \end{minted}
+        \vspace{.5cm}
+        
+ 
+\end{enumerate}
+
+\end{document}
